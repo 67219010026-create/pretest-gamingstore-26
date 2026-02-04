@@ -41,8 +41,33 @@ try {
                 <?php if (isset($_SESSION['user_id'])): ?>
                     <span style="color: var(--text-primary); margin-right: 10px;">Welcome,
                         <?php echo htmlspecialchars($_SESSION['user_name']); ?></span>
-                    <a href="product_form.php" class="btn btn-sm">
-                        <i class="fa-solid fa-plus"></i> Add Product
+
+                    <?php if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'admin'): ?>
+                        <div style="display: flex; gap: 0.5rem; margin-right: 1rem;">
+                            <a href="admin_orders.php" class="btn btn-sm" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);">Orders</a>
+                            <a href="admin_users.php" class="btn btn-sm" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);">Users</a>
+                        </div>
+                        <a href="product_form.php" class="btn btn-sm">
+                            <i class="fa-solid fa-plus"></i> Add Product
+                        </a>
+                    <?php else: ?>
+                        <a href="my_orders.php" class="btn btn-sm"
+                            style="background: transparent; border: 1px solid var(--text-secondary); color: var(--text-secondary);">
+                            <i class="fa-solid fa-box"></i> My Orders
+                        </a>
+                        <a href="cart.php" class="btn btn-sm"
+                            style="background: transparent; border: 1px solid var(--accent-primary);">
+                            <i class="fa-solid fa-cart-shopping"></i> Cart
+                            <?php if (!empty($_SESSION['cart'])): ?>
+                                <span
+                                    style="background: var(--danger); color: white; border-radius: 50%; padding: 2px 6px; font-size: 0.7rem;"><?php echo array_sum(array_column($_SESSION['cart'], 'quantity')); ?></span>
+                            <?php endif; ?>
+                        </a>
+                    <?php endif; ?>
+
+                    <a href="profile.php" class="btn btn-sm"
+                        style="background: transparent; border: 1px solid var(--accent-secondary); color: var(--accent-secondary);">
+                        <i class="fa-solid fa-user"></i> Profile
                     </a>
                     <a href="auth.php?action=logout" class="btn btn-sm btn-danger">Logout</a>
                 <?php else: ?>
@@ -112,14 +137,27 @@ try {
                                 </div>
                             </div>
                             <div class="actions">
-                                <a href="product_form.php?id=<?php echo $product['id']; ?>" class="btn btn-sm"
-                                    style="flex: 1; text-align: center;">Edit</a>
-                                <form action="actions.php" method="POST" style="flex: 1;"
-                                    onsubmit="return confirm('Delete this product?');">
-                                    <input type="hidden" name="action" value="delete">
-                                    <input type="hidden" name="id" value="<?php echo $product['id']; ?>">
-                                    <button type="submit" class="btn btn-sm btn-danger" style="width: 100%;">Delete</button>
-                                </form>
+                                <?php if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'admin'): ?>
+                                    <a href="product_form.php?id=<?php echo $product['id']; ?>" class="btn btn-sm"
+                                        style="flex: 1; text-align: center;">Edit</a>
+                                    <form action="actions.php" method="POST" style="flex: 1;"
+                                        onsubmit="return confirm('Delete this product?');">
+                                        <input type="hidden" name="action" value="delete">
+                                        <input type="hidden" name="id" value="<?php echo $product['id']; ?>">
+                                        <button type="submit" class="btn btn-sm btn-danger" style="width: 100%;">Delete</button>
+                                    </form>
+                                <?php else: ?>
+                                    <form action="cart_actions.php" method="POST" style="width: 100%;">
+                                        <input type="hidden" name="action" value="add">
+                                        <input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">
+                                        <input type="hidden" name="name" value="<?php echo htmlspecialchars($product['name']); ?>">
+                                        <input type="hidden" name="price" value="<?php echo $product['price']; ?>">
+                                        <input type="hidden" name="image_url" value="<?php echo htmlspecialchars($product['image_url']); ?>">
+                                        <button type="submit" class="btn btn-sm" style="width: 100%;">
+                                            <i class="fa-solid fa-cart-plus"></i> Add to Cart
+                                        </button>
+                                    </form>
+                                <?php endif; ?>
                             </div>
                         </div>
                     </div>

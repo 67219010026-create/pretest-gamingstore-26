@@ -1,5 +1,11 @@
 <?php
 require_once 'db.php';
+session_start();
+
+if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'admin') {
+    header("Location: index.php");
+    exit();
+}
 
 $product = [
     'id' => '',
@@ -72,11 +78,11 @@ if (isset($_GET['id'])) {
                         <option value="Game" <?php if ($product['category'] == 'Game')
                             echo 'selected'; ?>>Game</option>
                         <option value="Accessory" <?php if ($product['category'] == 'Accessory')
-                            echo 'selected'; ?>
-                            >Accessory</option>
+                            echo 'selected'; ?>>
+                            Accessory</option>
                         <option value="Merchandise" <?php if ($product['category'] == 'Merchandise')
-                            echo 'selected'; ?>
-                            >Merchandise</option>
+                            echo 'selected'; ?>>
+                            Merchandise</option>
                     </select>
                 </div>
 
