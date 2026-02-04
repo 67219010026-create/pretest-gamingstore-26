@@ -8,11 +8,8 @@ try {
 } catch (PDOException $e) {
     // If table doesn't exist (Error 42S02), create it and retry
     if ($e->getCode() == '42S02') {
-        $sql = file_get_contents('database_setup.sql');
-        $pdo->exec($sql);
-
-        $stmt = $pdo->query("SELECT * FROM products ORDER BY created_at DESC");
-        $products = $stmt->fetchAll();
+        // Table doesn't exist, treat as empty
+        $products = [];
     } else {
         // Re-throw if it's another error
         throw $e;
@@ -44,8 +41,10 @@ try {
 
                     <?php if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'admin'): ?>
                         <div style="display: flex; gap: 0.5rem; margin-right: 1rem;">
-                            <a href="admin_orders.php" class="btn btn-sm" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);">Orders</a>
-                            <a href="admin_users.php" class="btn btn-sm" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);">Users</a>
+                            <a href="admin_orders.php" class="btn btn-sm"
+                                style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);">Orders</a>
+                            <a href="admin_users.php" class="btn btn-sm"
+                                style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);">Users</a>
                         </div>
                         <a href="product_form.php" class="btn btn-sm">
                             <i class="fa-solid fa-plus"></i> Add Product
@@ -152,7 +151,8 @@ try {
                                         <input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">
                                         <input type="hidden" name="name" value="<?php echo htmlspecialchars($product['name']); ?>">
                                         <input type="hidden" name="price" value="<?php echo $product['price']; ?>">
-                                        <input type="hidden" name="image_url" value="<?php echo htmlspecialchars($product['image_url']); ?>">
+                                        <input type="hidden" name="image_url"
+                                            value="<?php echo htmlspecialchars($product['image_url']); ?>">
                                         <button type="submit" class="btn btn-sm" style="width: 100%;">
                                             <i class="fa-solid fa-cart-plus"></i> Add to Cart
                                         </button>
