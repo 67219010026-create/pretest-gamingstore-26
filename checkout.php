@@ -52,17 +52,13 @@ foreach ($_SESSION['cart'] as $item) {
             <div class="product-card" style="padding: 1.5rem;">
                 <h3 style="margin-bottom: 1rem;">Shipping Details</h3>
                 <p style="color: var(--text-secondary); margin-bottom: 0.5rem;"><strong>Name:</strong>
-                    <?php echo htmlspecialchars($user['name']); ?>
-                </p>
+                    <?php echo htmlspecialchars($user['fullname']); ?></p>
                 <p style="color: var(--text-secondary); margin-bottom: 0.5rem;"><strong>Address:</strong>
-                    <?php echo nl2br(htmlspecialchars($user['address'])); ?>
-                </p>
-                <p style="color: var(--text-secondary); margin-bottom: 0.5rem;"><strong>Phone:</strong>
-                    <?php echo htmlspecialchars($user['phone']); ?>
-                </p>
+                    <?php echo nl2br(htmlspecialchars($user['address'])); ?></p>
+                <p style="color: var(--text-secondary); margin-bottom: 0.5rem;"><strong>Tel:</strong>
+                    <?php echo htmlspecialchars($user['tel']); ?></p>
                 <p style="color: var(--text-secondary); margin-bottom: 1rem;"><strong>Email:</strong>
-                    <?php echo htmlspecialchars($user['email']); ?>
-                </p>
+                    <?php echo htmlspecialchars($user['email']); ?></p>
 
                 <a href="profile.php" class="btn btn-sm"
                     style="background: transparent; border: 1px solid var(--accent-primary);">Edit Details</a>
@@ -74,22 +70,15 @@ foreach ($_SESSION['cart'] as $item) {
                     <?php foreach ($_SESSION['cart'] as $item): ?>
                         <li
                             style="display: flex; justify-content: space-between; margin-bottom: 0.5rem; color: var(--text-secondary);">
-                            <span>
-                                <?php echo htmlspecialchars($item['name']); ?> x
-                                <?php echo $item['quantity']; ?>
-                            </span>
-                            <span>$
-                                <?php echo number_format($item['price'] * $item['quantity'], 2); ?>
-                            </span>
+                            <span><?php echo htmlspecialchars($item['name']); ?> x <?php echo $item['quantity']; ?></span>
+                            <span>$<?php echo number_format($item['price'] * $item['quantity'], 2); ?></span>
                         </li>
                     <?php endforeach; ?>
                 </ul>
                 <div
                     style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1rem; display: flex; justify-content: space-between; font-size: 1.25rem; font-weight: bold;">
                     <span>Total</span>
-                    <span style="color: var(--success);">$
-                        <?php echo number_format($grand_total, 2); ?>
-                    </span>
+                    <span style="color: var(--success);">$<?php echo number_format($grand_total, 2); ?></span>
                 </div>
 
                 <form action="order_actions.php" method="POST" style="margin-top: 2rem;">

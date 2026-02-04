@@ -2,7 +2,7 @@
 session_start();
 require_once 'db.php';
 
-if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'admin') {
+if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'Admin') {
     header("Location: login.php");
     exit();
 }
@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 $stmt = $pdo->query("
-    SELECT o.*, u.name as user_name, u.email 
+    SELECT o.*, u.fullname as user_name, u.email, u.username
     FROM orders o 
     JOIN users u ON o.user_id = u.id 
     ORDER BY created_at DESC
@@ -66,20 +66,13 @@ $orders = $stmt->fetchAll();
                 <tbody>
                     <?php foreach ($orders as $order): ?>
                         <tr>
-                            <td>#
-                                <?php echo $order['id']; ?>
-                            </td>
+                            <td>#<?php echo $order['id']; ?></td>
                             <td>
-                                <div>
-                                    <?php echo htmlspecialchars($order['user_name']); ?>
-                                </div>
+                                <div><?php echo htmlspecialchars($order['user_name']); ?></div>
                                 <div style="font-size: 0.8rem; color: var(--text-secondary);">
-                                    <?php echo htmlspecialchars($order['email']); ?>
-                                </div>
+                                    @<?php echo htmlspecialchars($order['username']); ?></div>
                             </td>
-                            <td>$
-                                <?php echo number_format($order['total_price'], 2); ?>
-                            </td>
+                            <td>$<?php echo number_format($order['total_price'], 2); ?></td>
                             <td>
                                 <span style="
                                 padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; 
@@ -89,9 +82,7 @@ $orders = $stmt->fetchAll();
                                     <?php echo htmlspecialchars($order['status']); ?>
                                 </span>
                             </td>
-                            <td>
-                                <?php echo date('M d, Y', strtotime($order['created_at'])); ?>
-                            </td>
+                            <td><?php echo date('M d, Y', strtotime($order['created_at'])); ?></td>
                             <td>
                                 <form method="POST" style="display: flex; gap: 0.5rem;">
                                     <input type="hidden" name="order_id" value="<?php echo $order['id']; ?>">

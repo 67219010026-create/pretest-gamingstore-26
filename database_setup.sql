@@ -10,12 +10,13 @@ CREATE TABLE IF NOT EXISTS products (
 
 CREATE TABLE IF NOT EXISTS users (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-    address TEXT NOT NULL,
-    phone VARCHAR(20) NOT NULL,
-    email VARCHAR(255) NOT NULL UNIQUE,
+    username VARCHAR(50) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
-    role ENUM('customer', 'admin') DEFAULT 'customer',
+    fullname VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    tel VARCHAR(20) NOT NULL,
+    address TEXT NOT NULL,
+    role ENUM('Admin', 'User') DEFAULT 'User',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 

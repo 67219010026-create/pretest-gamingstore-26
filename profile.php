@@ -11,15 +11,15 @@ $user_id = $_SESSION['user_id'];
 $message = "";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $name = $_POST['name'];
+    $fullname = $_POST['fullname'];
     $address = $_POST['address'];
-    $phone = $_POST['phone'];
+    $tel = $_POST['tel'];
     $email = $_POST['email'];
 
     try {
-        $stmt = $pdo->prepare("UPDATE users SET name=?, address=?, phone=?, email=? WHERE id=?");
-        $stmt->execute([$name, $address, $phone, $email, $user_id]);
-        $_SESSION['user_name'] = $name;
+        $stmt = $pdo->prepare("UPDATE users SET fullname=?, address=?, tel=?, email=? WHERE id=?");
+        $stmt->execute([$fullname, $address, $tel, $email, $user_id]);
+        $_SESSION['user_name'] = $fullname;
         $message = "Profile updated successfully!";
     } catch (PDOException $e) {
         $message = "Error: " . $e->getMessage();
@@ -59,6 +59,11 @@ $user = $stmt->fetch();
                 <i class="fa-solid fa-user-circle"></i> My Profile
             </h2>
 
+            <div style="margin-bottom: 1.5rem; color: var(--text-secondary); font-size: 0.9rem;">
+                Username: <strong
+                    style="color: var(--text-primary);"><?php echo htmlspecialchars($user['username']); ?></strong>
+            </div>
+
             <?php if ($message): ?>
                 <div
                     style="background: rgba(46, 213, 115, 0.2); color: #2ed573; padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem;">
@@ -68,9 +73,9 @@ $user = $stmt->fetch();
 
             <form method="POST">
                 <div class="form-group">
-                    <label class="form-label">Name</label>
-                    <input type="text" name="name" class="form-control"
-                        value="<?php echo htmlspecialchars($user['name']); ?>" required>
+                    <label class="form-label">Fullname</label>
+                    <input type="text" name="fullname" class="form-control"
+                        value="<?php echo htmlspecialchars($user['fullname']); ?>" required>
                 </div>
 
                 <div class="form-group">
@@ -80,9 +85,9 @@ $user = $stmt->fetch();
                 </div>
 
                 <div class="form-group">
-                    <label class="form-label">Phone</label>
-                    <input type="tel" name="phone" class="form-control"
-                        value="<?php echo htmlspecialchars($user['phone']); ?>" required>
+                    <label class="form-label">Tel</label>
+                    <input type="tel" name="tel" class="form-control"
+                        value="<?php echo htmlspecialchars($user['tel']); ?>" required>
                 </div>
 
                 <div class="form-group">

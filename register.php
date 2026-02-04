@@ -25,8 +25,14 @@
                 <input type="hidden" name="action" value="register">
 
                 <div class="form-group" style="margin-bottom: 1rem;">
-                    <label style="display: block; margin-bottom: 0.5rem; color: var(--text-secondary);">Name</label>
-                    <input type="text" name="name" required
+                    <label style="display: block; margin-bottom: 0.5rem; color: var(--text-secondary);">Username</label>
+                    <input type="text" name="username" required
+                        style="width: 100%; padding: 0.8rem; border-radius: 8px; border: 1px solid #333; background: var(--bg-primary); color: var(--text-primary);">
+                </div>
+
+                <div class="form-group" style="margin-bottom: 1rem;">
+                    <label style="display: block; margin-bottom: 0.5rem; color: var(--text-secondary);">Fullname</label>
+                    <input type="text" name="fullname" required
                         style="width: 100%; padding: 0.8rem; border-radius: 8px; border: 1px solid #333; background: var(--bg-primary); color: var(--text-primary);">
                 </div>
 
@@ -37,8 +43,8 @@
                 </div>
 
                 <div class="form-group" style="margin-bottom: 1rem;">
-                    <label style="display: block; margin-bottom: 0.5rem; color: var(--text-secondary);">Phone</label>
-                    <input type="tel" name="phone" required
+                    <label style="display: block; margin-bottom: 0.5rem; color: var(--text-secondary);">Tel</label>
+                    <input type="tel" name="tel" required
                         style="width: 100%; padding: 0.8rem; border-radius: 8px; border: 1px solid #333; background: var(--bg-primary); color: var(--text-primary);">
                 </div>
 

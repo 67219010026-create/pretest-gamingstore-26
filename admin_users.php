@@ -2,7 +2,7 @@
 session_start();
 require_once 'db.php';
 
-if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'admin') {
+if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'Admin') {
     header("Location: login.php");
     exit();
 }
@@ -53,7 +53,7 @@ $users = $stmt->fetchAll();
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Name</th>
+                        <th>User</th>
                         <th>Email</th>
                         <th>Role</th>
                         <th>Joined</th>
@@ -63,29 +63,26 @@ $users = $stmt->fetchAll();
                 <tbody>
                     <?php foreach ($users as $user): ?>
                         <tr>
-                            <td>#
-                                <?php echo $user['id']; ?>
-                            </td>
+                            <td>#<?php echo $user['id']; ?></td>
                             <td>
-                                <?php echo htmlspecialchars($user['name']); ?>
+                                <div><?php echo htmlspecialchars($user['username']); ?></div>
+                                <div style="font-size: 0.8rem; color: var(--text-secondary);">
+                                    <?php echo htmlspecialchars($user['fullname']); ?></div>
                             </td>
-                            <td>
-                                <?php echo htmlspecialchars($user['email']); ?>
-                            </td>
+                            <td><?php echo htmlspecialchars($user['email']); ?></td>
                             <td>
                                 <form method="POST" style="display: flex; gap: 0.5rem;">
                                     <input type="hidden" name="update_role_id" value="<?php echo $user['id']; ?>">
                                     <select name="role" onchange="this.form.submit()"
                                         style="background: #333; color: white; border: none; padding: 4px; border-radius: 4px;">
-                                        <option value="customer" <?php echo $user['role'] === 'customer' ? 'selected' : ''; ?>>Customer</option>
-                                        <option value="admin" <?php echo $user['role'] === 'admin' ? 'selected' : ''; ?>
-                                            >Admin</option>
+                                        <option value="User" <?php echo $user['role'] === 'User' ? 'selected' : ''; ?>>User
+                                        </option>
+                                        <option value="Admin" <?php echo $user['role'] === 'Admin' ? 'selected' : ''; ?>>Admin
+                                        </option>
                                     </select>
                                 </form>
                             </td>
-                            <td>
-                                <?php echo date('M d, Y', strtotime($user['created_at'])); ?>
-                            </td>
+                            <td><?php echo date('M d, Y', strtotime($user['created_at'])); ?></td>
                             <td>
                                 <?php if ($user['id'] != $_SESSION['user_id']): ?>
                                     <form method="POST" onsubmit="return confirm('Delete this user?');">

@@ -25,8 +25,8 @@
                 <input type="hidden" name="action" value="login">
 
                 <div class="form-group" style="margin-bottom: 1rem;">
-                    <label style="display: block; margin-bottom: 0.5rem; color: var(--text-secondary);">Email</label>
-                    <input type="email" name="email" required
+                    <label style="display: block; margin-bottom: 0.5rem; color: var(--text-secondary);">Username</label>
+                    <input type="text" name="username" required
                         style="width: 100%; padding: 0.8rem; border-radius: 8px; border: 1px solid #333; background: var(--bg-primary); color: var(--text-primary);">
                 </div>
 

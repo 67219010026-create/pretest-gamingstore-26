@@ -6,46 +6,48 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $action = $_POST['action'] ?? '';
 
     if ($action === 'register') {
-        $name = $_POST['name'];
+        $username = $_POST['username'];
+        $fullname = $_POST['fullname'];
         $address = $_POST['address'];
-        $phone = $_POST['phone'];
+        $tel = $_POST['tel'];
         $email = $_POST['email'];
         $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
         try {
-            $stmt = $pdo->prepare("INSERT INTO users (name, address, phone, email, password) VALUES (?, ?, ?, ?, ?)");
-            $stmt->execute([$name, $address, $phone, $email, $password]);
+            $stmt = $pdo->prepare("INSERT INTO users (username, password, fullname, email, tel, address) VALUES (?, ?, ?, ?, ?, ?)");
+            $stmt->execute([$username, $password, $fullname, $email, $tel, $address]);
 
             $_SESSION['user_id'] = $pdo->lastInsertId();
-            $_SESSION['user_name'] = $name;
+            $_SESSION['user_name'] = $fullname;
+            $_SESSION['user_role'] = 'User';
 
             header("Location: index.php");
             exit();
         } catch (PDOException $e) {
             if ($e->getCode() == 23000) { // Duplicate entry
-                echo "Email already exists!";
+                echo "Username or Email already exists!";
             } else {
                 echo "Error: " . $e->getMessage();
             }
         }
     } elseif ($action === 'login') {
-        $email = $_POST['email'];
+        $username = $_POST['username'];
         $password = $_POST['password'];
 
         try {
-            $stmt = $pdo->prepare("SELECT * FROM users WHERE email = ?");
-            $stmt->execute([$email]);
+            $stmt = $pdo->prepare("SELECT * FROM users WHERE username = ?");
+            $stmt->execute([$username]);
             $user = $stmt->fetch();
 
             if ($user && password_verify($password, $user['password'])) {
                 $_SESSION['user_id'] = $user['id'];
-                $_SESSION['user_name'] = $user['name'];
+                $_SESSION['user_name'] = $user['fullname'];
                 $_SESSION['user_role'] = $user['role'];
 
                 header("Location: index.php");
                 exit();
             } else {
-                echo "Invalid email or password!";
+                echo "Invalid username or password!";
             }
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();
