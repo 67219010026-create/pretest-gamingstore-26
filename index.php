@@ -10,7 +10,7 @@ try {
     if ($e->getCode() == '42S02') {
         $sql = file_get_contents('database_setup.sql');
         $pdo->exec($sql);
-        
+
         $stmt = $pdo->query("SELECT * FROM products ORDER BY created_at DESC");
         $products = $stmt->fetchAll();
     } else {
@@ -37,9 +37,20 @@ try {
             <div class="logo">
                 <i class="fa-solid fa-gamepad"></i> GAMING STORE
             </div>
-            <a href="product_form.php" class="btn">
-                <i class="fa-solid fa-plus"></i> Add New Product
-            </a>
+            <div style="display: flex; gap: 1rem; align-items: center;">
+                <?php if (isset($_SESSION['user_id'])): ?>
+                    <span style="color: var(--text-primary); margin-right: 10px;">Welcome,
+                        <?php echo htmlspecialchars($_SESSION['user_name']); ?></span>
+                    <a href="product_form.php" class="btn btn-sm">
+                        <i class="fa-solid fa-plus"></i> Add Product
+                    </a>
+                    <a href="auth.php?action=logout" class="btn btn-sm btn-danger">Logout</a>
+                <?php else: ?>
+                    <a href="login.php" class="btn btn-sm">Login</a>
+                    <a href="register.php" class="btn btn-sm"
+                        style="background: transparent; border: 1px solid var(--accent-primary);">Register</a>
+                <?php endif; ?>
+            </div>
         </header>
 
         <!-- Stats Overview (Optional Placeholder) -->
