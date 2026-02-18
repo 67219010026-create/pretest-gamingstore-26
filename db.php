@@ -15,6 +15,8 @@ $options = [
 try {
     $pdo = new PDO($dsn, $user, $pass, $options);
 } catch (\PDOException $e) {
-    throw new \PDOException($e->getMessage(), (int) $e->getCode());
+    // In production, log this error instead of echoing it
+    echo "Connection failed: " . $e->getMessage();
+    exit;
 }
 ?>
