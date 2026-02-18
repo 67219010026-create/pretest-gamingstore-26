@@ -1,4 +1,5 @@
 <?php
+session_start();
 $host = 'db';
 $db = 'stock_system';
 $user = 'user';
