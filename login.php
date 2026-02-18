@@ -47,71 +47,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <title>Login - Gaming Gear Store</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <style>
-        .auth-container {
-            max-width: 400px;
-            margin: 80px auto;
-            background-color: #1e1e1e;
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            color: #b0b0b0;
-        }
-
-        .form-group input {
-            width: 100%;
-            padding: 12px;
-            background-color: #2c2c2c;
-            border: 1px solid #333;
-            border-radius: 6px;
-            color: #fff;
-            font-family: inherit;
-        }
-
-        .form-group input:focus {
-            outline: none;
-            border-color: #00e676;
-        }
-
-        .auth-title {
-            text-align: center;
-            margin-bottom: 30px;
-            color: #00e676;
-            font-size: 1.8rem;
-        }
-
-        .error-msg {
-            color: #ff5252;
-            background-color: rgba(255, 82, 82, 0.1);
-            padding: 10px;
-            border-radius: 6px;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-        .text-green-500 {
-            color: #00e676;
-        }
-
-        .hover\:text-green-400:hover {
-            color: #66ffa6;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
     <header>
-        <h1>Gaming Gear Store</h1>
+        <div class="logo">
+            <h1>Gaming Gear Store</h1>
+        </div>
     </header>
 
     <div class="auth-container">
@@ -137,7 +81,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <button type="submit" class="btn">Login</button>
         </form>
 
-        <p style="text-align: center; margin-top: 20px; color: #b0b0b0;">
+        <p class="text-center text-muted" style="margin-top: 20px;">
             Don't have an account? <a href="register.php" class="text-green-500 hover:text-green-400">Register</a>
         </p>
     </div>

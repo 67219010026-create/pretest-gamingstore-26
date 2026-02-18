@@ -65,59 +65,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <title>Edit Product - Gaming Gear Store</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <style>
-        .form-container {
-            max-width: 600px;
-            margin: 40px auto;
-            background-color: #1e1e1e;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-        }
-
-        .header-actions {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
-        .back-link {
-            color: #b0b0b0;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .back-link:hover {
-            color: #fff;
-        }
-
-        .success-msg {
-            color: #00e676;
-            background-color: rgba(0, 230, 118, 0.1);
-            padding: 10px;
-            border-radius: 6px;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-        .error-msg {
-            color: #ff5252;
-            background-color: rgba(255, 82, 82, 0.1);
-            padding: 10px;
-            border-radius: 6px;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
     <header>
-        <h1>Admin Dashboard</h1>
+        <div class="logo">
+            <h1>Admin Dashboard</h1>
+        </div>
     </header>
 
     <div class="container">
@@ -125,8 +81,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <a href="admin_dashboard.php" class="back-link">&larr; Back to Dashboard</a>
         </div>
 
-        <div class="form-container">
-            <h2 style="margin-bottom: 20px; color: #3b82f6;">Edit Product</h2>
+        <div class="auth-container" style="max-width: 600px;">
+            <h2 class="auth-title">Edit Product</h2>
 
             <?php if ($error): ?>
                 <div class="error-msg">
@@ -153,13 +109,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         value="<?php echo htmlspecialchars($product['category']); ?>" required>
                 </div>
 
-                <div class="form-group" style="display: flex; gap: 20px;">
-                    <div style="flex: 1;">
+                <div class="form-group flex-between" style="gap: 20px;">
+                    <div class="w-full">
                         <label for="price">Price (THB)</label>
                         <input type="number" id="price" name="price" step="0.01" min="0"
                             value="<?php echo $product['price']; ?>" required>
                     </div>
-                    <div style="flex: 1;">
+                    <div class="w-full">
                         <label for="stock">Stock Quantity</label>
                         <input type="number" id="stock" name="stock" min="0" value="<?php echo $product['stock']; ?>"
                             required>
@@ -173,7 +129,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         placeholder="https://example.com/image.jpg">
                 </div>
 
-                <button type="submit" class="btn" style="background-color: #3b82f6;">Update Product</button>
+                <button type="submit" class="btn">Update Product</button>
             </form>
         </div>
     </div>
