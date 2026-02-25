@@ -1,4 +1,5 @@
 <?php
+require_once 'lang.php';
 require_once 'db.php';
 
 try {
@@ -25,19 +26,20 @@ try {
     <header>
         <div class="container flex-between" style="padding: 0;">
             <div class="logo">
-                <h1>Gaming Gear Store</h1>
+                <h1><?php echo t('store_name'); ?></h1>
             </div>
             <nav>
                 <?php if (isset($_SESSION['user_id'])): ?>
-                    <span class="text-muted" style="margin-right: 15px;">Welcome,
+                    <span class="text-muted" style="margin-right: 15px;"><?php echo t('welcome'); ?>,
                         <?php echo htmlspecialchars($_SESSION['username']); ?></span>
                     <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'Admin'): ?>
-                        <a href="admin_dashboard.php" class="btn btn-sm" style="margin-right: 10px;">Dashboard</a>
+                        <a href="admin_dashboard.php" class="btn btn-sm"
+                            style="margin-right: 10px;"><?php echo t('dashboard'); ?></a>
                     <?php endif; ?>
-                    <a href="logout.php" class="btn btn-danger btn-sm">Logout</a>
+                    <a href="logout.php" class="btn btn-danger btn-sm"><?php echo t('logout'); ?></a>
                 <?php else: ?>
-                    <a href="login.php" class="btn btn-sm" style="margin-right: 10px;">Login</a>
-                    <a href="register.php" class="btn btn-sm">Register</a>
+                    <a href="login.php" class="btn btn-sm" style="margin-right: 10px;"><?php echo t('login'); ?></a>
+                    <a href="register.php" class="btn btn-sm"><?php echo t('register'); ?></a>
                 <?php endif; ?>
             </nav>
         </div>
