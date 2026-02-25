@@ -171,11 +171,55 @@ if (isset($_SESSION['cart'])) {
                         </strong>.</p>
                     <p style="color: #666; margin-bottom: 20px;">Please confirm your order details.</p>
 
-                    <form method="POST" action="">
-                        <button type="submit" class="btn w-full" style="padding: 15px; font-size: 1.1rem;">
-                            <?php echo t('payment_button'); ?>
-                        </button>
+                    <form method="POST" action="" id="checkoutForm">
+                        <div style="margin-bottom: 20px;">
+                            <label style="display: block; font-weight: 600; margin-bottom: 10px;">Select Payment
+                                Method:</label>
+
+                            <div style="margin-bottom: 10px;">
+                                <input type="radio" id="pay_cod" name="payment_method" value="cod" checked
+                                    onchange="toggleQR(false)">
+                                <label for="pay_cod">Cash on Delivery (COD)</label>
+                            </div>
+
+                            <div style="margin-bottom: 10px;">
+                                <input type="radio" id="pay_card" name="payment_method" value="card"
+                                    onchange="toggleQR(false)">
+                                <label for="pay_card">Credit Card</label>
+                            </div>
+
+                            <div style="margin-bottom: 15px;">
+                                <input type="radio" id="pay_qr" name="payment_method" value="qr" onchange="toggleQR(true)">
+                                <label for="pay_qr">QR Code Scan</label>
+                            </div>
+
+                            <div id="qr_section"
+                                style="display: none; text-align: center; margin-bottom: 20px; padding: 15px; border: 1px solid #ddd; border-radius: 8px;">
+                                <p style="margin-bottom: 10px; font-weight: bold;">Scan to Pay</p>
+                                <!-- Dummy QR Code -->
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/QR_code_for_mobile_English_Wikipedia.svg"
+                                    alt="Dummy QR Code" style="width: 150px; height: 150px; margin: 0 auto;">
+                                <p style="margin-top: 10px; font-size: 0.9rem; color: #666;">Please transfer
+                                    <?php echo number_format($total_price, 2); ?> ฿</p>
+                            </div>
+                        </div>
+
+                        <div style="display: flex; gap: 10px;">
+                            <a href="cart.php" class="btn"
+                                style="flex: 1; text-align: center; padding: 15px; font-size: 1.1rem; background-color: #6c757d; color: white; text-decoration: none;">
+                                กลับ
+                            </a>
+                            <button type="submit" class="btn" style="flex: 1; padding: 15px; font-size: 1.1rem;">
+                                <?php echo t('payment_button'); ?>
+                            </button>
+                        </div>
                     </form>
+
+                    <script>
+                        function toggleQR(show) {
+                            document.getElementById('qr_section').style.display = show ? 'block' : 'none';
+                        }
+                    </script>
                 </div>
 
                 <!-- Order Summary -->
