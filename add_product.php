@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stock = $_POST['stock'];
     $image_url = trim($_POST['image_url']);
 
-    if (empty($name) || empty($category) || empty($price) || empty($stock)) {
+    if ($name === '' || $category === '' || $price === '' || $stock === '') {
         $error = "All fields except Image URL are required.";
     } else {
         try {
