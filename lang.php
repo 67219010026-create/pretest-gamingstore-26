@@ -1,5 +1,7 @@
 <?php
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 // Set default language to Thai if not set
 if (!isset($_SESSION['lang'])) {
     $_SESSION['lang'] = 'th';
@@ -35,6 +37,7 @@ $translations = [
         'discount' => 'ส่วนลด',
         'checkout_success' => 'สั่งซื้อสำเร็จ!',
         'continue_shopping' => 'เลือกซื้อสินค้าต่อ',
+        'back_to_cart' => 'กลับไปหน้าตะกร้าสินค้า',
     ],
     // Add other languages here if needed
 ];

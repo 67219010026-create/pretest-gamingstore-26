@@ -212,15 +212,15 @@ if (isset($_SESSION['cart'])) {
                             </button>
                             <a href="cart.php" class="btn"
                                 style="display: block; width: 100%; text-align: center; padding: 15px; font-size: 1.1rem; background-color: #6c757d; color: white; text-decoration: none; box-sizing: border-box;">
-                                กลับไปหน้าตะกร้าสินค้า
+                                <?php echo t('back_to_cart'); ?>
                             </a>
                         </div>
                     </form>
 
                     <script>
-                            function toggleQR(show) {
-                                document.getElementById('qr_section').style.display = show ? 'block' : 'none';
-                            }
+                        function toggleQR(show) {
+                            document.getElementById('qr_section').style.display = show ? 'block' : 'none';
+                        }
                     </script>
                 </div>
 

@@ -1,5 +1,6 @@
 <?php
 require_once 'db.php';
+require_once 'lang.php';
 
 $error = '';
 $success = '';
@@ -115,6 +116,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </div>
 
                 <button type="submit" class="btn">Register</button>
+                <a href="cart.php" class="btn"
+                    style="display: block; text-align: center; margin-top: 10px; background-color: #6c757d; text-decoration: none;">
+                    <?php echo t('back_to_cart'); ?>
+                </a>
             </form>
 
             <p class="text-center text-muted" style="margin-top: 20px;">
