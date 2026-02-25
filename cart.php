@@ -384,6 +384,10 @@ $total = $subtotal - $discount_amount;
                         style="margin-top: 20px; text-align: center; font-size: 1.1rem; padding: 15px;">
                         <?php echo t('checkout'); ?>
                     </a>
+                    <a href="index.php" class="btn w-full"
+                        style="margin-top: 10px; text-align: center; font-size: 1.1rem; padding: 15px; background-color: #6c757d; color: white; text-decoration: none; box-sizing: border-box;">
+                        <?php echo t('continue_shopping'); ?>
+                    </a>
                 </div>
 
             </div>
