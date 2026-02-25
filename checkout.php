@@ -200,25 +200,27 @@ if (isset($_SESSION['cart'])) {
                                 <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/QR_code_for_mobile_English_Wikipedia.svg"
                                     alt="Dummy QR Code" style="width: 150px; height: 150px; margin: 0 auto;">
                                 <p style="margin-top: 10px; font-size: 0.9rem; color: #666;">Please transfer
-                                    <?php echo number_format($total_price, 2); ?> ฿</p>
+                                    <?php echo number_format($total_price, 2); ?> ฿
+                                </p>
                             </div>
                         </div>
 
-                        <div style="display: flex; gap: 10px;">
-                            <a href="cart.php" class="btn"
-                                style="flex: 1; text-align: center; padding: 15px; font-size: 1.1rem; background-color: #6c757d; color: white; text-decoration: none;">
-                                กลับ
-                            </a>
-                            <button type="submit" class="btn" style="flex: 1; padding: 15px; font-size: 1.1rem;">
+                        <div style="margin-top: 20px;">
+                            <button type="submit" class="btn"
+                                style="width: 100%; padding: 15px; font-size: 1.1rem; margin-bottom: 10px;">
                                 <?php echo t('payment_button'); ?>
                             </button>
+                            <a href="cart.php" class="btn"
+                                style="display: block; width: 100%; text-align: center; padding: 15px; font-size: 1.1rem; background-color: #6c757d; color: white; text-decoration: none; box-sizing: border-box;">
+                                กลับไปหน้าตะกร้าสินค้า
+                            </a>
                         </div>
                     </form>
 
                     <script>
-                        function toggleQR(show) {
-                            document.getElementById('qr_section').style.display = show ? 'block' : 'none';
-                        }
+                            function toggleQR(show) {
+                                document.getElementById('qr_section').style.display = show ? 'block' : 'none';
+                            }
                     </script>
                 </div>
 
