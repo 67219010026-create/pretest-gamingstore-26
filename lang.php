@@ -26,6 +26,15 @@ $translations = [
         'order_summary' => 'สรุปการสั่งซื้อ',
         'payment_button' => 'ชำระเงิน',
         'error_missing_fields' => 'กรุณากรอกข้อมูลให้ครบ',
+        'empty_cart' => 'ตะกร้าสินค้าว่างเปล่า',
+        'update_cart' => 'อัปเดตตะกร้า',
+        'remove' => 'ลบ',
+        'discount_code' => 'โค้ดส่วนลด',
+        'apply_discount' => 'ใช้ส่วนลด',
+        'subtotal' => 'ยอดรวม',
+        'discount' => 'ส่วนลด',
+        'checkout_success' => 'สั่งซื้อสำเร็จ!',
+        'continue_shopping' => 'เลือกซื้อสินค้าต่อ',
     ],
     // Add other languages here if needed
 ];
