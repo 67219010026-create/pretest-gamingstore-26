@@ -9,7 +9,7 @@ if (!isset($_SESSION['lang'])) {
 
 $translations = [
     'th' => [
-        'store_name' => 'ร้านอุปกรณ์เกม',
+        'store_name' => 'Peak CPU',
         'welcome' => 'ยินดีต้อนรับ',
         'dashboard' => 'แดชบอร์ด',
         'logout' => 'ออกจากระบบ',

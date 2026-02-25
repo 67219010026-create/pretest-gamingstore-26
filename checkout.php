@@ -206,11 +206,11 @@ if (isset($_SESSION['cart'])) {
                         </div>
 
                         <div style="margin-top: 20px;">
-                            <button type="submit" class="btn"
+                            <button type="submit" class="btn btn-primary"
                                 style="width: 100%; padding: 15px; font-size: 1.1rem; margin-bottom: 10px;">
                                 <?php echo t('payment_button'); ?>
                             </button>
-                            <a href="cart.php" class="btn"
+                            <a href="cart.php" class="btn btn-secondary"
                                 style="display: block; width: 100%; text-align: center; padding: 15px; font-size: 1.1rem; background-color: #6c757d; color: white; text-decoration: none; box-sizing: border-box;">
                                 <?php echo t('back_to_cart'); ?>
                             </a>

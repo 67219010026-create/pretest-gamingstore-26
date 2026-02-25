@@ -81,7 +81,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <input type="password" id="password" name="password" required>
             </div>
 
-            <button type="submit" class="btn">Login</button>
+            <button type="submit" class="btn btn-primary w-full">Login</button>
             <a href="cart.php" class="btn"
                 style="display: block; text-align: center; margin-top: 10px; background-color: #6c757d; text-decoration: none;">
                 <?php echo t('back_to_cart'); ?>

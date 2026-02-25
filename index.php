@@ -31,34 +31,50 @@ if (isset($_SESSION['cart'])) {
 <body>
 
     <header>
-        <div class="container flex-between" style="padding: 0;">
+        <div class="container flex-between">
             <div class="logo">
-                <h1><?php echo t('store_name'); ?></h1>
+                <h1><a href="index.php"><?php echo t('store_name'); ?></a></h1>
             </div>
-            <a href="cart.php" class="btn btn-sm"
-                style="margin-right: 15px; background-color: #f1c40f; color: #333; font-weight: bold;">
-                <?php echo t('cart'); ?> (<?php echo $cart_count; ?>)
-            </a>
-            <?php if (isset($_SESSION['user_id'])): ?>
-                <span class="text-muted" style="margin-right: 15px;"><?php echo t('welcome'); ?>,
-                    <?php echo htmlspecialchars($_SESSION['username']); ?></span>
-                <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'Admin'): ?>
-                    <a href="admin_dashboard.php" class="btn btn-sm"
-                        style="margin-right: 10px;"><?php echo t('dashboard'); ?></a>
+
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="ค้นหาสินค้าที่ต้องการ...">
+                <button class="search-btn">🔍</button>
+            </div>
+
+            <nav class="flex-between">
+                <a href="cart.php" class="btn btn-sm btn-primary">
+                    <?php echo t('cart'); ?> (<?php echo $cart_count; ?>)
+                </a>
+                <?php if (isset($_SESSION['user_id'])): ?>
+                    <span class="text-muted" style="color: white;"><?php echo t('welcome'); ?>,
+                        <?php echo htmlspecialchars($_SESSION['username']); ?></span>
+                    <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'Admin'): ?>
+                        <a href="admin_dashboard.php" class="btn btn-sm btn-primary"><?php echo t('dashboard'); ?></a>
+                    <?php endif; ?>
+                    <a href="logout.php" class="btn btn-danger btn-sm"><?php echo t('logout'); ?></a>
+                <?php else: ?>
+                    <a href="login.php" class="btn btn-sm btn-primary"><?php echo t('login'); ?></a>
+                    <a href="register.php" class="btn btn-sm btn-primary"><?php echo t('register'); ?></a>
                 <?php endif; ?>
-                <a href="logout.php" class="btn btn-danger btn-sm"><?php echo t('logout'); ?></a>
-            <?php else: ?>
-                <a href="login.php" class="btn btn-sm" style="margin-right: 10px;"><?php echo t('login'); ?></a>
-                <a href="register.php" class="btn btn-sm"><?php echo t('register'); ?></a>
-            <?php endif; ?>
             </nav>
         </div>
     </header>
 
-    <div class="container">
+    <div class="secondary-nav">
+        <div class="container flex-between" style="justify-content: flex-start;">
+            <a href="#" class="cat-btn">☰ หมวดหมู่สินค้า</a>
+            <nav style="margin-left: 20px;">
+                <a href="index.php">สินค้าทั้งหมด</a>
+                <a href="#">โปรโมชั่น</a>
+                <a href="#">ติดต่อเรา</a>
+            </nav>
+        </div>
+    </div>
+
+    <div class="container mt-4">
         <div class="hero">
-            <h2>Ultimate Equipment</h2>
-            <p>For your ultimate performance</p>
+            <h2>Peak CPU - Ultimate Gaming Gear</h2>
+            <p>High-performance accessories for the serious gamer.</p>
         </div>
 
         <div class="product-grid">
@@ -80,7 +96,7 @@ if (isset($_SESSION['cart'])) {
                                 <?php echo number_format($product['price'], 2); ?>
                             </div>
                             <a href="cart.php?action=add&id=<?php echo $product['id']; ?>"
-                                class="btn w-full"><?php echo t('add_to_cart'); ?></a>
+                                class="btn btn-primary w-full"><?php echo t('add_to_cart'); ?></a>
                         </div>
                     </div>
                 <?php endforeach; ?>

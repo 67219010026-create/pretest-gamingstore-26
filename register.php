@@ -115,7 +115,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <input type="password" id="confirm_password" name="confirm_password" required>
                 </div>
 
-                <button type="submit" class="btn">Register</button>
+                <button type="submit" class="btn btn-primary w-full">Register</button>
                 <a href="cart.php" class="btn"
                     style="display: block; text-align: center; margin-top: 10px; background-color: #6c757d; text-decoration: none;">
                     <?php echo t('back_to_cart'); ?>

@@ -328,7 +328,8 @@ $total = $subtotal - $discount_amount;
                             </tbody>
                         </table>
                         <div style="text-align: right;">
-                            <button type="submit" name="update_cart" class="btn" style="background-color: #6c757d;">
+                            <button type="submit" name="update_cart" class="btn btn-sm"
+                                style="background-color: #6c757d; color: white;">
                                 <?php echo t('update_cart'); ?>
                             </button>
                         </div>
@@ -345,7 +346,7 @@ $total = $subtotal - $discount_amount;
                         <input type="text" name="discount_code" placeholder="<?php echo t('discount_code'); ?>"
                             value="<?php echo htmlspecialchars($_SESSION['discount']['code'] ?? ''); ?>"
                             style="flex-grow: 1; padding: 10px; border: 1px solid #ddd; border-radius: 4px;">
-                        <button type="submit" name="apply_discount" class="btn btn-sm">
+                        <button type="submit" name="apply_discount" class="btn btn-sm btn-primary">
                             <?php echo t('apply_discount'); ?>
                         </button>
                     </form>
@@ -380,12 +381,12 @@ $total = $subtotal - $discount_amount;
                         </span>
                     </div>
 
-                    <a href="checkout.php" class="btn w-full"
-                        style="margin-top: 20px; text-align: center; font-size: 1.1rem; padding: 15px;">
+                    <a href="checkout.php" class="btn btn-primary w-full"
+                        style="margin-top: 20px; text-align: center; font-size: 1.1rem; padding: 15px; display: block;">
                         <?php echo t('checkout'); ?>
                     </a>
                     <a href="index.php" class="btn w-full"
-                        style="margin-top: 10px; text-align: center; font-size: 1.1rem; padding: 15px; background-color: #6c757d; color: white; text-decoration: none; box-sizing: border-box;">
+                        style="margin-top: 10px; text-align: center; font-size: 1.1rem; padding: 15px; background-color: #6c757d; color: white; text-decoration: none; box-sizing: border-box; display: block;">
                         <?php echo t('continue_shopping'); ?>
                     </a>
                 </div>
