@@ -8,6 +8,13 @@ try {
 } catch (PDOException $e) {
     die("Error fetching products: " . $e->getMessage());
 }
+
+$cart_count = 0;
+if (isset($_SESSION['cart'])) {
+    foreach ($_SESSION['cart'] as $qty) {
+        $cart_count += $qty;
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,19 +35,22 @@ try {
             <div class="logo">
                 <h1><?php echo t('store_name'); ?></h1>
             </div>
-            <nav>
-                <?php if (isset($_SESSION['user_id'])): ?>
-                    <span class="text-muted" style="margin-right: 15px;"><?php echo t('welcome'); ?>,
-                        <?php echo htmlspecialchars($_SESSION['username']); ?></span>
-                    <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'Admin'): ?>
-                        <a href="admin_dashboard.php" class="btn btn-sm"
-                            style="margin-right: 10px;"><?php echo t('dashboard'); ?></a>
-                    <?php endif; ?>
-                    <a href="logout.php" class="btn btn-danger btn-sm"><?php echo t('logout'); ?></a>
-                <?php else: ?>
-                    <a href="login.php" class="btn btn-sm" style="margin-right: 10px;"><?php echo t('login'); ?></a>
-                    <a href="register.php" class="btn btn-sm"><?php echo t('register'); ?></a>
+            <a href="cart.php" class="btn btn-sm"
+                style="margin-right: 15px; background-color: #f1c40f; color: #333; font-weight: bold;">
+                <?php echo t('cart'); ?> (<?php echo $cart_count; ?>)
+            </a>
+            <?php if (isset($_SESSION['user_id'])): ?>
+                <span class="text-muted" style="margin-right: 15px;"><?php echo t('welcome'); ?>,
+                    <?php echo htmlspecialchars($_SESSION['username']); ?></span>
+                <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'Admin'): ?>
+                    <a href="admin_dashboard.php" class="btn btn-sm"
+                        style="margin-right: 10px;"><?php echo t('dashboard'); ?></a>
                 <?php endif; ?>
+                <a href="logout.php" class="btn btn-danger btn-sm"><?php echo t('logout'); ?></a>
+            <?php else: ?>
+                <a href="login.php" class="btn btn-sm" style="margin-right: 10px;"><?php echo t('login'); ?></a>
+                <a href="register.php" class="btn btn-sm"><?php echo t('register'); ?></a>
+            <?php endif; ?>
             </nav>
         </div>
     </header>
@@ -69,7 +79,8 @@ try {
                             <div class="product-price">฿
                                 <?php echo number_format($product['price'], 2); ?>
                             </div>
-                            <a href="#" class="btn w-full">Add to Cart</a>
+                            <a href="cart.php?action=add&id=<?php echo $product['id']; ?>"
+                                class="btn w-full"><?php echo t('add_to_cart'); ?></a>
                         </div>
                     </div>
                 <?php endforeach; ?>

@@ -22,7 +22,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $_SESSION['role'] = $user['role'];
 
                 // Redirect based on role or to home
-                if ($user['role'] === 'Admin') {
+                if (isset($_GET['redirect'])) {
+                    header("Location: " . $_GET['redirect']);
+                } else if ($user['role'] === 'Admin') {
                     header("Location: admin_dashboard.php");
                 } else {
                     header("Location: index.php");
